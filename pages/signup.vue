@@ -96,7 +96,7 @@
         localStorage.setItem('token', this.ip.token)
         localStorage.setItem('email', this.ip.email)
         //window.location.reload()
-        this.$router.push('/productList')
+        //this.$router.push('/productList')
       }
     }
   }

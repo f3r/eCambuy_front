@@ -76,7 +76,7 @@
         //console.log(this.ip.token)
         localStorage.setItem('token', this.ip.token)
         localStorage.setItem('email', this.ip.email)
-        this.$router.push('/productList')
+        //this.$router.push('/productList')
       }
     }
   }

@@ -1,27 +1,29 @@
 <template>
     <div>
         <h2>Productos en venta</h2>
+        <ProductCard v-for="(product, idx) in products" :key="idx" :products="product"/>
 
-        <div v-for="(product, idx) in products" :key="idx">
-          {{ product.name }}
-        </div>
     </div>
 </template>
 
 <script>
-//import productService from '../../services/productService'
+import ProductCard from '~/components/ProductCard'
 
 export default {
-  methods: {
-      async getProducts() {
-        const response = await this.$axios.$get('/products')
-        //console.log(response)
-        return response
-      }
-    },
+  name: 'ProductList',
+  components: {
+    ProductCard
+  },
   data() {
     return {
       products: []
+    }
+  },
+  methods: {
+    async getProducts() {
+      const response = await this.$axios.$get('/products')
+      //console.log(response)
+      return response
     }
   },
   async mounted () {
