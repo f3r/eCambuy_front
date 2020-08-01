@@ -7,40 +7,45 @@
           md="4"
         >
           <v-text-field
-            v-model="firstname"
-            :rules="nameRules"
-            :counter="10"
-            label="First name"
-            required
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="4"
-        >
-          <v-text-field
-            v-model="lastname"
-            :rules="nameRules"
-            :counter="10"
-            label="Last name"
-            required
-          ></v-text-field>
-        </v-col>
-
-        <v-col
-          cols="12"
-          md="4"
-        >
-          <v-text-field
             v-model="email"
             :rules="emailRules"
             label="E-mail"
             required
           ></v-text-field>
         </v-col>
+        <v-col
+          cols="12"
+          md="4"
+        >
+          <v-text-field
+            v-model="password"
+            :rules="passwordRules"
+            :counter="10"
+            label="password"
+            required
+          ></v-text-field>
+        </v-col>
+
       </v-row>
     </v-container>
+    <v-spacer></v-spacer>
+    <v-btn
+      color="primary"
+      nuxt
+      @click="login"
+      to="/productList"
+      >
+      Login
+      </v-btn>
+      <v-spacer></v-spacer>
+      <p>No tienes cuenta? Crea una</p>
+      <v-btn
+      color="primary"
+      nuxt
+      to="/signup"
+      >
+      signup
+      </v-btn>
   </v-form>
 </template>
 
@@ -48,11 +53,10 @@
   export default {
     data: () => ({
       valid: false,
-      firstname: '',
-      lastname: '',
-      nameRules: [
-        v => !!v || 'Name is required',
-        v => v.length <= 10 || 'Name must be less than 10 characters',
+      password: '',
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => v.length >= 6 || 'Password must be at least 6 characters',
       ],
       email: '',
       emailRules: [
@@ -60,5 +64,15 @@
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
     }),
+    methods: {
+      async login() {
+        const data = {
+          user_email: this.email,
+          user_password: this.password
+        }
+        const ip = await this.$axios.$post('/auth/login', data )
+        this.ip = ip
+      }
+    }
   }
 </script>

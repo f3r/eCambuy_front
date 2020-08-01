@@ -10,8 +10,7 @@
         <h4>Crea una cuenta para intercambiar tus productos ecológicos</h4>
           <v-text-field
             v-model="username"
-            :rules="nameRules"
-            :counter="10"
+            :rules="usernameRules"
             label="Name"
             required
           ></v-text-field>
@@ -23,8 +22,7 @@
         >
           <v-text-field
             v-model="password"
-            :rules="nameRules"
-            :counter="10"
+            :rules="passwordRules"
             label="Password"
             required
           ></v-text-field>
@@ -48,8 +46,18 @@
       color="primary"
       nuxt
       @click="signup"
+      to="/productList"
       >
       Signup
+      </v-btn>
+      <v-spacer></v-spacer>
+      <p>Ya tienes una cuenta?</p>
+      <v-btn
+      color="primary"
+      nuxt
+      to="/login"
+      >
+      Login
       </v-btn>
   </v-form>
 </template>
@@ -59,12 +67,16 @@
     data: () => ({
       valid: false,
       username: '',
-      password: '',
-      nameRules: [
+      usernameRules: [
         v => !!v || 'Name is required',
         v => v.length <= 10 || 'Name must be less than 10 characters',
       ],
-      email: 'f@f.com',
+      password: '',
+      passwordRules: [
+        v => !!v || 'Password is required',
+        v => v.length >= 6 || 'Password must be at least 6 characters',
+      ],
+      email: '',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid',
@@ -73,8 +85,8 @@
     methods: {
       async signup() {
         const data = {
-          user_password: this.username,
-          user_username: this.password,
+          user_username: this.username,
+          user_password: this.password,
           user_email: this.email
         }
         const ip = await this.$axios.$post('/auth/signup', data )

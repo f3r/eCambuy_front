@@ -105,11 +105,11 @@ export default {
           icon: 'mdi-magnify',
           title: 'Buscar',
           to: '/inspire'
-        },        
+        },
         {
           icon: 'mdi-format-list-checkbox',
           title: 'Lista de productos',
-          to: '/inspire'
+          to: '/productList'
         }
       ],
       miniVariant: false,
