@@ -22,10 +22,10 @@
           md="4"
         >
           <v-text-field
-            v-model="lastname"
+            v-model="password"
             :rules="nameRules"
             :counter="10"
-            label="Last name"
+            label="Password"
             required
           ></v-text-field>
         </v-col>
@@ -43,13 +43,13 @@
         </v-col>
       </v-row>
     </v-container>
-    <v-spacer></v-spacer>    
+    <v-spacer></v-spacer>
     <v-btn
       color="primary"
       nuxt
-      to="/productList"
+      @click="signup"
       >
-      Login
+      Signup
       </v-btn>
   </v-form>
 </template>
@@ -59,16 +59,27 @@
     data: () => ({
       valid: false,
       username: '',
-      lastname: '',
+      password: '',
       nameRules: [
         v => !!v || 'Name is required',
         v => v.length <= 10 || 'Name must be less than 10 characters',
       ],
-      email: '',
+      email: 'f@f.com',
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid',
       ],
     }),
+    methods: {
+      async signup() {
+        const data = {
+          user_password: this.username,
+          user_username: this.password,
+          user_email: this.email
+        }
+        const ip = await this.$axios.$post('/auth/signup', data )
+        this.ip = ip
+      }
+    }
   }
 </script>
