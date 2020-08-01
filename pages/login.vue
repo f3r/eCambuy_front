@@ -33,7 +33,7 @@
       color="primary"
       nuxt
       @click="login"
-      to="/productList"
+
       >
       Login
       </v-btn>
@@ -72,6 +72,11 @@
         }
         const ip = await this.$axios.$post('/auth/login', data )
         this.ip = ip
+        //console.log(this.ip)
+        //console.log(this.ip.token)
+        localStorage.setItem('token', this.ip.token)
+        localStorage.setItem('email', this.ip.email)
+        this.$router.push('/productList')
       }
     }
   }

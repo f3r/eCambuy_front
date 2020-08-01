@@ -1,13 +1,7 @@
 <template>
     <div>
-        <h1>Hola, soy product List</h1>
-        <v-btn
-          color="primary"
-          nuxt
+        <h2>Productos en venta</h2>
 
-          >
-          Ver productos
-        </v-btn>
         <div v-for="(product, idx) in products" :key="idx">
           {{ product.name }}
         </div>
@@ -21,7 +15,7 @@ export default {
   methods: {
       async getProducts() {
         const response = await this.$axios.$get('/products')
-        console.log(response)
+        //console.log(response)
         return response
       }
     },
