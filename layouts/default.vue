@@ -104,7 +104,7 @@ export default {
         {
           icon: 'mdi-magnify',
           title: 'Buscar',
-          to: '/inspire'
+          to: '/productList'
         },
         {
           icon: 'mdi-format-list-checkbox',

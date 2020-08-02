@@ -20,14 +20,14 @@ export default {
     }
   },
   methods: {
-    async getProducts() {
+    async getListProducts() {
       const response = await this.$axios.$get('/products')
       //console.log(response)
       return response
     }
   },
   async mounted () {
-       this.products = await this.getProducts()
+       this.products = await this.getListProducts()
   }
 }
 </script>
