@@ -20,6 +20,7 @@
       <v-btn
         color="orange"
         text
+        :to="`/productList/${products._id}`"
       >
         Ver producto
       </v-btn>
