@@ -50,7 +50,7 @@ export default {
   computed: {
     filteredProducts() {
       return this.products.filter((product) => {
-        return product.name.match(this.search)
+        return product.name.match(this.search.toUpperCase())
       })
     }
   },
