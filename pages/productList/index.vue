@@ -1,9 +1,31 @@
 <template>
-    <div>
-        <h2>Productos en venta</h2>
-        <ProductCard v-for="(product, idx) in products" :key="idx" :products="product"/>
+  <v-main>
+    <v-container>
+      <v-row>
+        <v-col
+          cols="12"
+          md="6"
+        >
+          <v-sheet
+            elevation="2"
+            class="pa-12"
+          >
+            <v-text-field
+              v-model="search"
+              :placeholder="placeholder"
+              :filled="filled"
+              :clearable="clearable"
+              :counter="counterEn ? counter : false"
+            ></v-text-field>
+          </v-sheet>
+        </v-col>
+      </v-row>
+    </v-container>
 
-    </div>
+    <h2>Productos en venta</h2>
+    <ProductCard v-for="(product, idx) in filteredProducts" :key="idx" :products="product"/>
+
+  </v-main>
 </template>
 
 <script>
@@ -16,7 +38,20 @@ export default {
   },
   data() {
     return {
-      products: []
+      products: [],
+      search:'',
+      placeholder: 'Filtra los productos por nombre',
+      filled: false,
+      clearable: false,
+      counterEn: false,
+      counter: 0,
+    }
+  },
+  computed: {
+    filteredProducts() {
+      return this.products.filter((product) => {
+        return product.name.match(this.search)
+      })
     }
   },
   methods: {
@@ -31,3 +66,6 @@ export default {
   }
 }
 </script>
+
+
+
