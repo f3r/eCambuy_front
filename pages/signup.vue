@@ -1,47 +1,50 @@
 <template>
-  <v-form v-model="valid">
-    <v-container>
-      <v-row>
-        <v-col cols="12" md="4">
+  <v-container>
+    <v-row>
+      <v-col cols="12" md="4" class="mx-auto">
+        <v-form v-model="valid">
           <h2>Únete a eCambuy</h2>
           <h4>Crea una cuenta para intercambiar tus productos ecológicos</h4>
           <v-text-field
             v-model="username"
             :rules="usernameRules"
-            label="Name"
+            label="Username"
             required
           ></v-text-field>
-        </v-col>
 
-        <v-col cols="12" md="4">
           <v-text-field
             v-model="password"
             :rules="passwordRules"
+            type="password"
             label="Password"
             required
           ></v-text-field>
-        </v-col>
 
-        <v-col cols="12" md="4">
           <v-text-field
             v-model="email"
             :rules="emailRules"
             label="E-mail"
             required
           ></v-text-field>
-        </v-col>
-      </v-row>
-    </v-container>
-    <v-spacer></v-spacer>
-    <v-btn color="primary" nuxt @click="signup">
-      Enviar
-    </v-btn>
-    <v-spacer></v-spacer>
-    <p>Ya tienes una cuenta?</p>
-    <v-btn color="primary" nuxt to="/login">
-      Login
-    </v-btn>
-  </v-form>
+
+          <v-btn color="primary" nuxt @click="signup">
+            Enviar
+          </v-btn>
+        </v-form>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" md="4" class="mx-auto pt-3">
+        <v-divider />
+        <p class="mt-4">
+          Ya tienes una cuenta?
+          <v-btn color="primary" text nuxt to="/login">
+            Login
+          </v-btn>
+        </p>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -51,7 +54,8 @@ export default {
     username: '',
     usernameRules: [
       (v) => !!v || 'Name is required',
-      (v) => v.length <= 10 || 'Name must be less than 10 characters',
+      (v) => v.length <= 40 || 'Name must be less than 40 characters',
+      (v) => !v.includes(' ') || 'Name cannot contain spaces',
     ],
     password: '',
     passwordRules: [

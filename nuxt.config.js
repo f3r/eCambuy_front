@@ -17,7 +17,7 @@ export default {
           user: { url: '/auth/me', method: 'get', propertyName: '' },
         },
         // tokenRequired: true,
-        tokenType: '',
+        // tokenType: '',
         // globalToken: true,
         // autoFetchUser: true
       },
