@@ -43,8 +43,6 @@ export default {
   methods: {
     async getProduct() {
       const response = await this.$axios.$get(`/products/${this.id}`)
-      // console.log(this.id)
-      console.log(response)
       return response
     },
   },

@@ -25,13 +25,10 @@ export default {
   },
   async mounted() {
     this.lastProducts = await this.getLastProducts()
-    console.log(this.lastProducts)
   },
   methods: {
     async getLastProducts() {
       const response = await this.$axios.$get('/products/last')
-      // console.log(this.id)
-      console.log(response)
       return response
     },
   },

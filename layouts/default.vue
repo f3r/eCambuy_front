@@ -37,9 +37,8 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-btn text to="/addProduct">€</v-btn>
-      <v-btn text @click="logout">Logout</v-btn>
       <div v-if="$auth.loggedIn">
-        {{ $auth.user._id }}
+        Hola, {{ $auth.user }}
         <v-btn text @click="logout">Logout</v-btn>
         <!-- username -->
         <!-- logout button -->
@@ -68,7 +67,8 @@
 export default {
   data() {
     return {
-      drawer: true,
+      drawer: false,
+      fixed: false,
       items: [
         {
           icon: 'mdi-home',

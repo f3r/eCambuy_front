@@ -55,12 +55,6 @@ export default {
         user_password: this.password,
       }
       this.$auth.loginWith('local', { data })
-      // const ip = await this.$axios.$post('/auth/login', data )
-      // this.ip = ip
-      // console.log(this.ip)
-      // console.log(this.ip.token)
-      // localStorage.setItem('token', this.ip.token)
-      // localStorage.setItem('email', this.ip.email)
       this.$router.push('/productList')
     },
   },

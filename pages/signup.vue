@@ -70,7 +70,6 @@ export default {
   }),
   methods: {
     async signup() {
-      // console.log(response)
       const data = {
         user_username: this.username,
         user_password: this.password,
@@ -78,12 +77,6 @@ export default {
       }
       await this.$axios.$post('/auth/signup', data)
       this.$auth.loginWith('local', { data })
-      // const ip = await this.$axios.$post('/auth/signup', data )
-      // this.ip = ip
-      // console.log('->' + this.ip)
-      // localStorage.setItem('token', this.ip.token)
-      // localStorage.setItem('email', this.ip.email)
-      // window.location.reload()
       this.$router.push('/productList')
     },
   },
