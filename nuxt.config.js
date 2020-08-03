@@ -1,9 +1,27 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  axios: {
+    baseURL: 'http://localhost:3000/api'
+  },
   server: {
     port: 8000,
     host: 'localhost'
+  },
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/auth/login', method: 'post', propertyName: 'token' },
+          logout: false,
+          user: { url: '/auth/me', method: 'get', propertyName: '' }
+        },
+        // tokenRequired: true,
+        tokenType: ''
+        // globalToken: true,
+        // autoFetchUser: true
+      }
+    }
   },
   /*
   ** Nuxt rendering mode
@@ -59,6 +77,7 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
+    '@nuxtjs/auth'
   ],
   /*
   ** vuetify module configuration

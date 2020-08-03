@@ -50,12 +50,28 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn text @click="logout">Logout</v-btn>
+      <div v-if="$auth.loggedIn">
+        {{ $auth.user._id }}
+        <v-btn text @click="logout">Logout</v-btn>
+        <!-- username -->
+        <!-- logout button -->
+      </div>
+      <div v-else>
+        <v-btn text to="/login">Login</v-btn>
+        <v-btn text to="/signup">Register</v-btn>
+        <!-- login -->
+        <!-- logout button -->
+      </div>
+      <v-spacer />
       <v-btn
         icon
         @click.stop="rightDrawer = !rightDrawer"
       >
         <v-icon>mdi-menu</v-icon>
+      <v-spacer></v-spacer>
       </v-btn>
+
     </v-app-bar>
     <v-content>
       <v-container>
@@ -116,6 +132,11 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'eCambuy'
+    }
+  },
+  methods: {
+    async logout() {
+      await this.$auth.logout();
     }
   }
 }

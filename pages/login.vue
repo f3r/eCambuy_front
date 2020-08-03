@@ -35,7 +35,7 @@
       @click="login"
 
       >
-      Login
+      Enviar
       </v-btn>
       <v-spacer></v-spacer>
       <p>No tienes cuenta? Crea una</p>
@@ -65,17 +65,18 @@
       ],
     }),
     methods: {
-      async login() {
+      login() {
         const data = {
           user_email: this.email,
           user_password: this.password
         }
-        const ip = await this.$axios.$post('/auth/login', data )
-        this.ip = ip
+        this.$auth.loginWith('local', {data})
+        //const ip = await this.$axios.$post('/auth/login', data )
+        //this.ip = ip
         //console.log(this.ip)
         //console.log(this.ip.token)
-        localStorage.setItem('token', this.ip.token)
-        localStorage.setItem('email', this.ip.email)
+        //localStorage.setItem('token', this.ip.token)
+        //localStorage.setItem('email', this.ip.email)
         this.$router.push('/productList')
       }
     }

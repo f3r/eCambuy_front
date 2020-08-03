@@ -48,7 +48,7 @@
       @click="signup"
 
       >
-      Signup
+      Enviar
       </v-btn>
       <v-spacer></v-spacer>
       <p>Ya tienes una cuenta?</p>
@@ -90,11 +90,13 @@
           user_password: this.password,
           user_email: this.email
         }
-        const ip = await this.$axios.$post('/auth/signup', data )
-        this.ip = ip
-        console.log('->' + this.ip)
-        localStorage.setItem('token', this.ip.token)
-        localStorage.setItem('email', this.ip.email)
+        await this.$axios.$post('/auth/signup', data )
+        this.$auth.loginWith('local', {data})
+        //const ip = await this.$axios.$post('/auth/signup', data )
+        //this.ip = ip
+        //console.log('->' + this.ip)
+        //localStorage.setItem('token', this.ip.token)
+        //localStorage.setItem('email', this.ip.email)
         //window.location.reload()
         this.$router.push('/productList')
       }
