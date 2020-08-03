@@ -2,14 +2,8 @@
   <v-main>
     <v-container>
       <v-row>
-        <v-col
-          cols="12"
-          md="12"
-        >
-          <v-sheet
-            elevation="2"
-            class="pa-12"
-          >
+        <v-col cols="12" md="12">
+          <v-sheet elevation="2" class="pa-12">
             <v-text-field
               v-model="search"
               :placeholder="placeholder"
@@ -23,9 +17,11 @@
     </v-container>
 
     <h2 class="text-center">Productos en venta</h2>
-    <ProductCard v-for="(product, idx) in filteredProducts" :key="idx" :products="product"/>
-
-
+    <ProductCard
+      v-for="(product, idx) in filteredProducts"
+      :key="idx"
+      :products="product"
+    />
   </v-main>
 </template>
 
@@ -35,12 +31,12 @@ import ProductCard from '~/components/ProductCard'
 export default {
   name: 'ProductList',
   components: {
-    ProductCard
+    ProductCard,
   },
   data() {
     return {
       products: [],
-      search:'',
+      search: '',
       placeholder: 'Filtra los productos por nombre',
       filled: false,
       clearable: false,
@@ -53,20 +49,17 @@ export default {
       return this.products.filter((product) => {
         return product.name.match(this.search.toUpperCase())
       })
-    }
+    },
+  },
+  async mounted() {
+    this.products = await this.getListProducts()
   },
   methods: {
     async getListProducts() {
       const response = await this.$axios.$get('/products')
-      //console.log(response)
+      // console.log(response)
       return response
-    }
+    },
   },
-  async mounted () {
-       this.products = await this.getListProducts()
-  }
 }
 </script>
-
-
-

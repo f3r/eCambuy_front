@@ -1,31 +1,35 @@
 <template>
   <v-app>
-    <v-navigation-drawer temporary v-model="drawer" app>
+    <v-navigation-drawer v-model="drawer" temporary app>
       <v-layout mt-4 column align-center>
         <v-flex>
-          <v-avatar><v-img src="https://randomuser.me/api/portraits/men/85.jpg">></v-img></v-avatar>
+          <v-avatar
+            ><v-img src="https://randomuser.me/api/portraits/men/85.jpg"
+              >></v-img
+            ></v-avatar
+          >
         </v-flex>
         <v-flex>
           <p class="accent--text mt-3 headline">Carmelo Cotón</p>
         </v-flex>
       </v-layout>
-        <v-list >
-          <v-list-item
-            v-for="(item, i) in items"
-            :key="i"
-            :to="item.to"
-            router
-            exact
-          >
-            <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-action>
-            <v-list-item-content>
-              <v-list-item-title v-text="item.title" />
-            </v-list-item-content>
-          </v-list-item>
-        </v-list>
-      </v-navigation-drawer>
+      <v-list>
+        <v-list-item
+          v-for="(item, i) in items"
+          :key="i"
+          :to="item.to"
+          router
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.title" />
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
 
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -54,11 +58,7 @@
       </v-container>
     </v-content>
 
-
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
+    <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
@@ -66,34 +66,33 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       drawer: true,
       items: [
         {
           icon: 'mdi-home',
           title: 'Inicio',
-          to: '/'
+          to: '/',
         },
         {
           icon: 'mdi-magnify',
           title: 'Buscar',
-          to: '/productList'
+          to: '/productList',
         },
         {
           icon: 'mdi-format-list-checkbox',
           title: 'Lista de productos',
-          to: '/productList'
-        }
+          to: '/productList',
+        },
       ],
-      drawer: false,
-      title: 'eCambuy'
+      title: 'eCambuy',
     }
   },
   methods: {
     async logout() {
-      await this.$auth.logout();
-    }
-  }
+      await this.$auth.logout()
+    },
+  },
 }
 </script>

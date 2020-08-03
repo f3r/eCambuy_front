@@ -1,14 +1,6 @@
 <template>
-  <v-layout
-    column
-    justify-center
-    align-center
-  >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >
+  <v-layout column justify-center align-center>
+    <v-flex xs12 sm8 md6>
       <div class="text-center">
         <!--<logo />-->
         <!--<vuetify-logo />-->
@@ -19,16 +11,10 @@
         <v-card-title class="headline">
           Para comprar o vender productos
         </v-card-title>
-        <v-card-text>
-
-        </v-card-text>
+        <v-card-text> </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn
-            color="success"
-            nuxt
-            to="/signup"
-          >
+          <v-btn color="success" nuxt to="/signup">
             Register
           </v-btn>
         </v-card-actions>
@@ -47,19 +33,12 @@
         <v-card-title class="headline">
           Ver todos los productos
         </v-card-title>
-        <v-card-text>
-
-        </v-card-text>
+        <v-card-text> </v-card-text>
         <v-card-actions>
           <v-spacer />
-          <v-btn
-            color="success"
-            nuxt
-            to="productList"
-          >
-          Ver productos
+          <v-btn color="success" nuxt to="productList">
+            Ver productos
           </v-btn>
-
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -69,5 +48,7 @@
 <script>
 import ProductSlider from '~/components/ProductSlider'
 
-export default {}
+export default {
+  components: { ProductSlider },
+}
 </script>
