@@ -4,7 +4,7 @@
       <v-row>
         <v-col
           cols="12"
-          md="6"
+          md="12"
         >
           <v-sheet
             elevation="2"
@@ -22,8 +22,9 @@
       </v-row>
     </v-container>
 
-    <h2>Productos en venta</h2>
+    <h2 class="text-center">Productos en venta</h2>
     <ProductCard v-for="(product, idx) in filteredProducts" :key="idx" :products="product"/>
+
 
   </v-main>
 </template>

@@ -29,7 +29,7 @@
       </v-row>
     </v-container>
     <v-spacer></v-spacer>
-    <v-btn
+    <v-btn class="mb-3"
       color="primary"
       nuxt
       @click="login"
@@ -37,7 +37,7 @@
       >
       Enviar
       </v-btn>
-      <v-spacer></v-spacer>
+      <v-divider></v-divider>
       <p>No tienes cuenta? Crea una</p>
       <v-btn
       color="primary"

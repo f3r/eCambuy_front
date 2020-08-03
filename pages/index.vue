@@ -25,7 +25,7 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="primary"
+            color="success"
             nuxt
             to="/signup"
           >
@@ -53,7 +53,7 @@
         <v-card-actions>
           <v-spacer />
           <v-btn
-            color="primary"
+            color="success"
             nuxt
             to="productList"
           >

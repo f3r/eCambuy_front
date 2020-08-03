@@ -1,14 +1,14 @@
 <template>
   <v-app>
-
-    <v-app-bar>
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-
-      <v-navigation-drawer
-      v-model="drawer"
-
-      app
-      >
+    <v-navigation-drawer temporary v-model="drawer" app>
+      <v-layout mt-4 column align-center>
+        <v-flex>
+          <v-avatar><v-img src="https://randomuser.me/api/portraits/men/85.jpg">></v-img></v-avatar>
+        </v-flex>
+        <v-flex>
+          <p class="accent--text mt-3 headline">Carmelo Cotón</p>
+        </v-flex>
+      </v-layout>
         <v-list >
           <v-list-item
             v-for="(item, i) in items"
@@ -25,11 +25,14 @@
             </v-list-item-content>
           </v-list-item>
         </v-list>
-
       </v-navigation-drawer>
+
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title v-text="title" />
       <v-spacer />
+      <v-btn text to="/addProduct">€</v-btn>
       <v-btn text @click="logout">Logout</v-btn>
       <div v-if="$auth.loggedIn">
         {{ $auth.user._id }}
@@ -65,9 +68,7 @@
 export default {
   data () {
     return {
-
-
-
+      drawer: true,
       items: [
         {
           icon: 'mdi-home',
