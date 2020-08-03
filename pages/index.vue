@@ -33,7 +33,16 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-      <v-spacer></v-spacer>
+
+      <v-divider></v-divider>
+
+      <v-card>
+        <h2>Últimos Productos</h2>
+        <ProductSlider />
+      </v-card>
+
+      <v-divider></v-divider>
+
       <v-card>
         <v-card-title class="headline">
           Ver todos los productos
@@ -58,11 +67,7 @@
 </template>
 
 <script>
+import ProductSlider from '~/components/ProductSlider'
 
-
-export default {
-  components: {
-
-  }
-}
+export default {}
 </script>
