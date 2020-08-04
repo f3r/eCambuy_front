@@ -45,7 +45,11 @@
           >
           <!--</div>-->
         </div>
-        <div v-else>Hola amigo</div>
+        <div v-else>
+          <p class="text-center">
+            Inicia sesión o regístrate para comprar este producto
+          </p>
+        </div>
       </v-card>
     </v-col>
   </v-main>

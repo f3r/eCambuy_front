@@ -3,7 +3,7 @@
     <v-container>
       <v-row>
         <v-col cols="12" md="12">
-          <v-sheet elevation="2" class="pa-12">
+          <v-sheet elevation="1" class="pa-12">
             <v-text-field
               v-model="search"
               :placeholder="placeholder"
@@ -17,11 +17,16 @@
     </v-container>
 
     <h2 class="text-center">Productos en venta</h2>
-    <ProductCard
-      v-for="(product, idx) in filteredProducts"
-      :key="idx"
-      :products="product"
-    />
+    <v-container>
+      <v-row>
+        <ProductCard
+          v-for="(product, idx) in filteredProducts"
+          :key="idx"
+          :products="product"
+          class="mb-2"
+        />
+      </v-row>
+    </v-container>
   </v-main>
 </template>
 

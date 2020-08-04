@@ -1,48 +1,32 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-center">
-        <!--<logo />-->
-        <!--<vuetify-logo />-->
-        <h1>Comercia con productos ecológicos</h1>
-        <h3>Locales, Saludables y Sabrosos</h3>
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Para comprar o vender productos
-        </v-card-title>
-        <v-card-text> </v-card-text>
-        <v-card-actions>
+  <v-container>
+    <v-row>
+      <v-col cols="12" md="10" class="mx-auto mb-4">
+        <h1 class="text-center">Comercia con productos ecológicos</h1>
+        <h3 class="text-center">Locales, Saludables y Sabrosos</h3>
+
+        <div class="text-center mt-12 mb-8">
+          <span class="orange--text mb-4">Para comprar o vender productos</span>
+
           <v-spacer />
           <v-btn color="success" nuxt to="/signup">
-            Register
+            Crea una cuenta
           </v-btn>
-        </v-card-actions>
-      </v-card>
+        </div>
 
-      <v-divider></v-divider>
-
-      <v-card>
-        <h2>Últimos Productos</h2>
+        <div class="text-center">
+          <h2>Últimos Productos</h2>
+        </div>
         <ProductSlider />
-      </v-card>
 
-      <v-divider></v-divider>
-
-      <v-card>
-        <v-card-title class="headline">
-          Ver todos los productos
-        </v-card-title>
-        <v-card-text> </v-card-text>
-        <v-card-actions>
-          <v-spacer />
+        <div class="text-center mt-12">
           <v-btn color="success" nuxt to="productList">
             Ver productos
           </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
