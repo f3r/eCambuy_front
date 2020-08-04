@@ -10,7 +10,9 @@
           >
         </v-flex>
         <v-flex>
-          <p class="accent--text mt-3 headline">Carmelo Cotón</p>
+          <p class="accent--text mt-3 headline">
+            {{ $auth.user.username }}
+          </p>
         </v-flex>
       </v-layout>
       <v-list>
@@ -38,7 +40,7 @@
       <v-spacer />
       <v-btn text to="/addProduct">€</v-btn>
       <div v-if="$auth.loggedIn">
-        Hola, {{ $auth.user }}
+        Hola, {{ $auth.user.username }}
         <v-btn text @click="logout">Logout</v-btn>
         <!-- username -->
         <!-- logout button -->

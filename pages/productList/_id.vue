@@ -35,7 +35,7 @@
     <v-col cols="12" md="4" class="mx-auto mt-3">
       <v-card>
         <div v-if="$auth.loggedIn">
-          <!--<div v-if="$auth.user === product.owner._id">-->
+          <!--<div v-if="$auth.user.username === product.owner.username">-->
           <v-btn class="mb-2" block color="orange" @click="editProduct"
             >Editar Producto</v-btn
           >
@@ -69,6 +69,7 @@ export default {
   methods: {
     async getProduct() {
       const response = await this.$axios.$get(`/products/${this.id}`)
+      console.log(response)
       return response
     },
     editProduct() {
@@ -77,7 +78,6 @@ export default {
     async deleteProduct() {
       await this.$axios.$delete(`/products/me/${this.id}`)
       this.$router.push('/productList')
-      // alert('con este borro')
     },
   },
 }

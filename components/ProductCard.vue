@@ -1,8 +1,6 @@
 <template>
-  <v-col cols="12" md="4">
+  <v-col cols="12" sm="6" md="4">
     <v-card>
-      <!--<v-card class="mx-auto"
-        max-width="400">-->
       <v-img class="white--text align-end" height="200px" :src="products.image">
       </v-img>
       <v-card-title class="pb-2">{{ products.name }}</v-card-title>
