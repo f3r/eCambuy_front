@@ -28,8 +28,7 @@
     </v-col>
     <v-col cols="12" md="4" class="mx-auto mt-3">
       <v-card>
-        <div v-if="isAuthenticated">
-          <!--<div v-if="isAuthenticated && loggedInUser.username === product.owner.username">-->
+        <div v-if="isAuthenticated && loggedInUser._id === owner._id">
           <v-btn class="mb-2" block color="orange" @click="dialog = true"
             >Editar Producto</v-btn
           >
@@ -37,7 +36,6 @@
           <v-btn block color="error" @click="deleteProduct"
             >Borrar Producto</v-btn
           >
-          <!--</div>-->
         </div>
 
         <v-dialog v-model="dialog" width="500">
