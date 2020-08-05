@@ -1,20 +1,22 @@
 <template>
   <v-app>
     <v-navigation-drawer v-model="drawer" temporary app>
-      <v-layout mt-4 column align-center>
-        <v-flex>
-          <v-avatar
-            ><v-img src="https://randomuser.me/api/portraits/men/85.jpg"
-              >></v-img
-            ></v-avatar
-          >
-        </v-flex>
-        <v-flex>
-          <p class="accent--text mt-3 headline">
-            {{ $auth.user }}
-          </p>
-        </v-flex>
-      </v-layout>
+      <v-container>
+        <v-layout v-if="isAuthenticated" mt-4 column align-center>
+          <v-flex>
+            <v-avatar
+              ><v-img src="https://randomuser.me/api/portraits/men/85.jpg"
+                >></v-img
+              ></v-avatar
+            >
+          </v-flex>
+          <v-flex>
+            <p class="accent--text mt-3 headline">
+              <nuxt-link to="/profile">{{ loggedInUser.username }}</nuxt-link>
+            </p>
+          </v-flex>
+        </v-layout>
+      </v-container>
       <v-list>
         <v-list-item
           v-for="(item, i) in items"
