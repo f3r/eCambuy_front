@@ -34,8 +34,8 @@
     </v-col>
     <v-col cols="12" md="4" class="mx-auto mt-3">
       <v-card>
-        <div v-if="$auth.loggedIn">
-          <!--<div v-if="$auth.user.username === product.owner.username">-->
+        <div v-if="isAuthenticated">
+          <!--<div v-if="isAuthenticated && loggedInUser.username === product.owner.username">-->
           <v-btn class="mb-2" block color="orange" @click="editProduct"
             >Editar Producto</v-btn
           >
@@ -45,23 +45,23 @@
           >
           <!--</div>-->
         </div>
-        <div v-else>
-          <p class="text-center">
-            Inicia sesión o regístrate para comprar este producto
-          </p>
-        </div>
       </v-card>
     </v-col>
   </v-main>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       id: this.$route.params.id,
       product: {},
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   async mounted() {
     this.product = await this.getProduct()
