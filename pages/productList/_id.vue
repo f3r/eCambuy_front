@@ -2,7 +2,7 @@
   <v-main>
     <v-col cols="12" md="8" class="mx-auto">
       <v-card>
-        <v-card-title>Vendedor:{{ product.owner }}</v-card-title>
+        <v-card-title>Vendedor:{{ product.owner }} ID: {{ id }}</v-card-title>
         <v-img
           class="white--text align-end"
           height="200px"
@@ -69,7 +69,13 @@ export default {
   methods: {
     async getProduct() {
       const response = await this.$axios.$get(`/products/${this.id}`)
-      console.log(response)
+      console.log('id prod soy ->' + typeof response._id)
+      console.log(response._id)
+      console.log('owner soy ->' + typeof response.owner)
+      console.log(response.owner)
+      console.log('owner id soy ->' + typeof response.owner._id)
+      console.log(response.owner._id)
+
       return response
     },
     editProduct() {

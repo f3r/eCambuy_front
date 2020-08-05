@@ -11,7 +11,7 @@
         </v-flex>
         <v-flex>
           <p class="accent--text mt-3 headline">
-            {{ $auth.user.username }}
+            {{ $auth.user }}
           </p>
         </v-flex>
       </v-layout>
@@ -39,8 +39,8 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
       <v-btn text to="/addProduct">€</v-btn>
-      <div v-if="$auth.loggedIn">
-        Hola, {{ $auth.user.username }}
+      <div v-if="isAuthenticated">
+        {{ loggedInUser.username }}
         <v-btn text @click="logout">Logout</v-btn>
         <!-- username -->
         <!-- logout button -->
@@ -66,6 +66,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
@@ -90,6 +92,9 @@ export default {
       ],
       title: 'eCambuy',
     }
+  },
+  computed: {
+    ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
   methods: {
     async logout() {
