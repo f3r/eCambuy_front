@@ -2,24 +2,18 @@
   <v-main>
     <v-col cols="12" md="8" class="mx-auto">
       <v-card>
-        <v-card-title>Vendedor:{{ product.owner }}</v-card-title>
-        <v-img
-          class="white--text align-end"
-          height="200px"
-          :src="product.image"
-        >
+        <v-card-title>Vendedor:{{ owner && owner.username }}</v-card-title>
+        <v-img class="white--text align-end" height="200px" :src="image">
         </v-img>
         <v-spacer></v-spacer>
-        <v-card-title class="pb-0">{{ product.name }}</v-card-title>
+        <v-card-title class="pb-0">{{ name }}</v-card-title>
         <v-spacer></v-spacer>
+        <v-card-subtitle class="pb-0">Precio: {{ price }}</v-card-subtitle>
         <v-card-subtitle class="pb-0"
-          >Precio: {{ product.price }}</v-card-subtitle
-        >
-        <v-card-subtitle class="pb-0"
-          >Municipio: {{ product.location }}</v-card-subtitle
+          >Municipio: {{ location }}</v-card-subtitle
         >
         <v-card-text class="text--primary">
-          <div>Descripción: {{ product.description }}</div>
+          <div>Descripción: {{ description }}</div>
         </v-card-text>
         <v-card-actions>
           <v-btn color="success" text to="/productList">
@@ -36,7 +30,7 @@
       <v-card>
         <div v-if="isAuthenticated">
           <!--<div v-if="isAuthenticated && loggedInUser.username === product.owner.username">-->
-          <v-btn class="mb-2" block color="orange" @click="editProduct"
+          <v-btn class="mb-2" block color="orange" @click="dialog = true"
             >Editar Producto</v-btn
           >
 
@@ -45,6 +39,14 @@
           >
           <!--</div>-->
         </div>
+
+        <v-dialog v-model="dialog" width="500">
+          <v-card>
+            <v-card-title>Nombre: {{ name }}</v-card-title>
+            <v-card-subtitle>Precio: {{ price }}</v-card-subtitle>
+            <v-btn @click="dialog = false">Cerrar</v-btn>
+          </v-card>
+        </v-dialog>
       </v-card>
     </v-col>
   </v-main>
@@ -54,36 +56,33 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  async asyncData({ $axios, params }) {
+    const response = await $axios.$get(
+      `http://localhost:3000/api/products/${params.id}`
+    )
+    return { ...response }
+  },
   data() {
     return {
       id: this.$route.params.id,
-      product: {},
+      dialog: false,
     }
   },
   computed: {
     ...mapGetters(['isAuthenticated', 'loggedInUser']),
   },
-  async mounted() {
-    this.product = await this.getProduct()
-  },
-  methods: {
-    async getProduct() {
-      const response = await this.$axios.$get(`/products/${this.id}`)
-      console.log('id prod soy ->' + typeof response._id)
-      console.log(response._id)
-      console.log('owner soy ->' + typeof response.owner)
-      console.log(response.owner)
-      console.log('owner id soy ->' + typeof response.owner._id)
-      console.log(response.owner._id)
 
-      return response
-    },
+  methods: {
     editProduct() {
       alert('con este edito')
+      this.$router.push('/addProduct')
     },
     async deleteProduct() {
-      await this.$axios.$delete(`/products/me/${this.id}`)
-      this.$router.push('/productList')
+      const response = confirm('Estás seguro de borrar el producto?')
+      if (response) {
+        await this.$axios.$delete(`/products/me/${this.id}`)
+        this.$router.push('/addProduct')
+      }
     },
   },
 }
