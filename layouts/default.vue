@@ -40,7 +40,7 @@
 
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <v-btn text to="/addProduct">€</v-btn>
+      <v-btn text to="/addProductForm">€</v-btn>
       <div v-if="isAuthenticated">
         {{ loggedInUser.username }}
         <v-btn text to="/profile">Perfil</v-btn>

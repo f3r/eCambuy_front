@@ -3,7 +3,7 @@
     <v-row>
       <v-col cols="12" md="6" class="mx-auto">
         <v-form v-model="valid">
-          <h2>Añadir producto</h2>
+          <h2>Editar producto</h2>
           <v-text-field
             v-model="name"
             :rules="nameRules"
@@ -35,7 +35,7 @@
             required
           ></v-text-field>
 
-          <v-btn color="primary" nuxt @click="createProduct">
+          <v-btn color="primary" nuxt @click="updateProduct">
             Enviar
           </v-btn>
         </v-form>
@@ -46,29 +46,43 @@
 
 <script>
 export default {
-  data: () => ({
-    valid: false,
-    name: '',
-    nameRules: [
-      (v) => !!v || 'Name is required',
-      (v) => v.length <= 40 || 'Name must be less than 40 characters',
-    ],
-    image: '',
-    imageRules: [(v) => !!v || 'Image is required'],
-    description: '',
-    descriptionRules: [
-      (v) => !!v || 'Description is required',
-      (v) => v.length <= 325 || 'Description must be less than 325 characters',
-    ],
-    price: '',
-    location: '',
-    locationRules: [
-      (v) => !!v || 'Location is required',
-      (v) => v.length <= 325 || 'Description must be less than 325 characters',
-    ],
-  }),
+  data() {
+    return {
+      id: this.$route.params.id,
+      valid: false,
+      name: '',
+      nameRules: [
+        (v) => !!v || 'Name is required',
+        (v) => v.length <= 40 || 'Name must be less than 40 characters',
+      ],
+      image: '',
+      imageRules: [(v) => !!v || 'Image is required'],
+      description: '',
+      descriptionRules: [
+        (v) => !!v || 'Description is required',
+        (v) =>
+          v.length <= 325 || 'Description must be less than 325 characters',
+      ],
+      price: '',
+      location: '',
+      locationRules: [
+        (v) => !!v || 'Location is required',
+        (v) =>
+          v.length <= 325 || 'Description must be less than 325 characters',
+      ],
+    }
+  },
+  async created() {
+    const response = await this.$axios.$get(`/products/${this.id}`)
+    console.log(response)
+    this.name = response.name
+    this.image = response.image
+    this.description = response.description
+    this.price = response.price
+    this.location = response.location
+  },
   methods: {
-    async createProduct() {
+    async updateProduct() {
       const data = {
         name: this.name.toUpperCase(),
         image: this.image,
@@ -76,7 +90,7 @@ export default {
         price: this.price,
         location: this.location,
       }
-      await this.$axios.$post('/products/me', data)
+      await this.$axios.$put(`/products/me/${this.id}`, data)
       this.$router.push(`/productList/${this.id}`)
     },
   },

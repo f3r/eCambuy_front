@@ -29,7 +29,7 @@
     <v-col cols="12" md="4" class="mx-auto mt-3">
       <v-card>
         <div v-if="isAuthenticated && loggedInUser._id === owner._id">
-          <v-btn class="mb-2" block color="orange" @click="dialog = true"
+          <v-btn class="mb-2" block color="orange" @click="editProduct"
             >Editar Producto</v-btn
           >
 
@@ -37,14 +37,6 @@
             >Borrar Producto</v-btn
           >
         </div>
-
-        <v-dialog v-model="dialog" width="500">
-          <v-card>
-            <v-card-title>Nombre: {{ name }}</v-card-title>
-            <v-card-subtitle>Precio: {{ price }}</v-card-subtitle>
-            <v-btn @click="dialog = false">Cerrar</v-btn>
-          </v-card>
-        </v-dialog>
       </v-card>
     </v-col>
   </v-main>
@@ -72,14 +64,13 @@ export default {
 
   methods: {
     editProduct() {
-      alert('con este edito')
-      this.$router.push('/addProduct')
+      this.$router.push(`/editProduct/${this.id}`)
     },
     async deleteProduct() {
       const response = confirm('Estás seguro de borrar el producto?')
       if (response) {
         await this.$axios.$delete(`/products/me/${this.id}`)
-        this.$router.push('/addProduct')
+        this.$router.push('/addProductForm')
       }
     },
   },

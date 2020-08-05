@@ -18,7 +18,12 @@
         <p class="mt-2"><strong>Productos creados</strong></p>
         <div v-for="(profile, idx) in profiles" :key="idx">
           <v-col cols="12" md="12">
-            <v-btn color="success" block class="mb-2">
+            <v-btn
+              color="success"
+              block
+              class="mb-2"
+              @click="showProduct(profile._id)"
+            >
               {{ profile.name }} <v-spacer></v-spacer> {{ profile.createdDate }}
             </v-btn>
           </v-col>
@@ -49,6 +54,9 @@ export default {
       const response = await this.$axios.$get('/users/me/')
       console.log(response.productsCreated)
       return response.productsCreated
+    },
+    showProduct(id) {
+      this.$router.push(`/productList/${id}`)
     },
   },
 }
