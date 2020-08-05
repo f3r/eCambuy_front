@@ -41,23 +41,20 @@
       <v-btn text to="/addProduct">€</v-btn>
       <div v-if="isAuthenticated">
         {{ loggedInUser.username }}
+        <v-btn text to="/profile">Perfil</v-btn>
         <v-btn text @click="logout">Logout</v-btn>
-        <!-- username -->
-        <!-- logout button -->
       </div>
       <div v-else>
         <v-btn text to="/login">Login</v-btn>
         <v-btn text to="/signup">Register</v-btn>
-        <!-- login -->
-        <!-- logout button -->
       </div>
     </v-app-bar>
 
-    <v-content>
+    <v-main>
       <v-container>
         <nuxt />
       </v-container>
-    </v-content>
+    </v-main>
 
     <v-footer :absolute="!fixed" app>
       <span>&copy; {{ new Date().getFullYear() }}</span>
