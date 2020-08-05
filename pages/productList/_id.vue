@@ -2,7 +2,7 @@
   <v-main>
     <v-col cols="12" md="8" class="mx-auto">
       <v-card>
-        <v-card-title>Vendedor:{{ product.owner }} ID: {{ id }}</v-card-title>
+        <v-card-title>Vendedor:{{ product.owner }}</v-card-title>
         <v-img
           class="white--text align-end"
           height="200px"

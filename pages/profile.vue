@@ -1,23 +1,28 @@
 <template>
   <v-container>
     <v-row>
-      <v-col>
-        <p>
+      <v-col cols="12" md="6" class="mx-auto">
+        <div class="mb-2">
           <strong>Username:</strong>
           {{ loggedInUser.username }}
-        </p>
-        <p>
+        </div>
+        <div class="mb-2">
           <strong>Email:</strong>
           {{ loggedInUser.email }}
-        </p>
-        <p>
+        </div>
+        <div class="mb-2">
           <strong>Fecha de registro:</strong>
           {{ loggedInUser.signUpDate }}
-        </p>
-        <p>
-          <strong>Productos creados:</strong>
-          {{ loggedInUser.productsCreated }}
-        </p>
+        </div>
+        <v-divider></v-divider>
+        <p class="mt-2"><strong>Productos creados</strong></p>
+        <div v-for="(profile, idx) in profiles" :key="idx">
+          <v-col cols="12" md="12">
+            <v-btn color="success" block class="mb-2">
+              {{ profile.name }} <v-spacer></v-spacer> {{ profile.createdDate }}
+            </v-btn>
+          </v-col>
+        </div>
       </v-col>
     </v-row>
   </v-container>
@@ -27,8 +32,23 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  data() {
+    return {
+      profiles: '',
+    }
+  },
   computed: {
     ...mapGetters(['loggedInUser']),
+  },
+  async mounted() {
+    this.profiles = await this.getProfile()
+  },
+  methods: {
+    async getProfile() {
+      const response = await this.$axios.$get('/users/me/')
+      console.log(response.productsCreated)
+      return response.productsCreated
+    },
   },
 }
 </script>
