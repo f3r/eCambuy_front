@@ -15,9 +15,10 @@
       <v-card-subtitle class="pb-0"
         >Municipio: {{ products.location }}</v-card-subtitle
       >
+      <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="orange" text :to="`/productList/${products._id}`">
+        <v-btn color="success" block :to="`/productList/${products._id}`">
           Ver producto
         </v-btn>
         <v-spacer></v-spacer>

@@ -35,7 +35,7 @@
             required
           ></v-text-field>
 
-          <v-btn color="primary" nuxt @click="updateProduct">
+          <v-btn block color="primary" nuxt @click="updateProduct">
             Enviar
           </v-btn>
         </v-form>
@@ -74,7 +74,6 @@ export default {
   },
   async created() {
     const response = await this.$axios.$get(`/products/${this.id}`)
-    console.log(response)
     this.name = response.name
     this.image = response.image
     this.description = response.description

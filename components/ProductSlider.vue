@@ -33,7 +33,6 @@ export default {
   },
   async mounted() {
     this.lastProducts = await this.getLastProducts()
-    console.log(this.lastProducts)
   },
   methods: {
     async getLastProducts() {

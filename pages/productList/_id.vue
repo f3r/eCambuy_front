@@ -15,6 +15,7 @@
         <v-card-text class="text--primary">
           <div>Descripción: {{ description }}</div>
         </v-card-text>
+        <v-divider></v-divider>
         <v-card-actions>
           <v-btn color="success" text to="/productList">
             Lista de productos
@@ -26,7 +27,7 @@
         </v-card-actions>
       </v-card>
     </v-col>
-    <v-col cols="12" md="4" class="mx-auto mt-3">
+    <v-col cols="12" md="8" class="mx-auto mt-3">
       <v-card>
         <div v-if="isAuthenticated && loggedInUser._id === owner._id">
           <v-btn class="mb-2" block color="orange" @click="editProduct"

@@ -27,19 +27,21 @@
             required
           ></v-text-field>
 
-          <v-btn color="primary" nuxt @click="signup">
-            Enviar
-          </v-btn>
+          <div class="text-center">
+            <v-btn block color="primary" nuxt @click="signup">
+              Enviar
+            </v-btn>
+          </div>
         </v-form>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" md="4" class="mx-auto pt-3">
         <v-divider />
-        <p class="mt-4">
+        <p class="mt-4 text-center">
           Ya tienes una cuenta?
           <v-btn color="primary" text nuxt to="/login">
-            Login
+            Inicia sesión
           </v-btn>
         </p>
       </v-col>
