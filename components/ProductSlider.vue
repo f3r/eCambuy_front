@@ -1,22 +1,27 @@
 <template>
-  <v-card elevation="4" max-width="750" class="mx-auto">
-    <v-system-bar lights-out></v-system-bar>
+  <v-card elevation="10" max-width="1000" class="mx-auto">
+    <!--<v-system-bar lights-out></v-system-bar>-->
     <v-carousel
       :continuous="true"
       :cycle="cycle"
       :show-arrows="true"
-      hide-delimiter-background
-      delimiter-icon="mdi-minus"
       height="300"
     >
-      <v-carousel-item v-for="(lastProduct, idx) in lastProducts" :key="idx">
-        <v-sheet height="100%" tile>
+      <v-carousel-item
+        v-for="(lastProduct, idx) in lastProducts"
+        :key="idx"
+        :src="lastProduct.image"
+      >
+        <div class="title">
+          {{ lastProduct.name }}
+        </div>
+        <!--<v-sheet height="100%" tile>
           <v-row class="fill-height" align="center" justify="center">
             <div class="display-3">
               <v-img height="200px" :src="lastProduct.image" />
             </div>
           </v-row>
-        </v-sheet>
+        </v-sheet>-->
       </v-carousel-item>
     </v-carousel>
   </v-card>
@@ -42,3 +47,18 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.title {
+  position: absolute;
+  bottom: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 2em;
+  padding: 10px;
+  text-align: center;
+  left: 30%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 50%;
+}
+</style>

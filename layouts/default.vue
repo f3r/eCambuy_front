@@ -56,7 +56,7 @@
       <v-spacer />
       <div class="mr-4">
         <v-btn color="success" to="/addProductForm">
-          <v-icon>mdi-currency-eur</v-icon>
+          <v-icon>mdi-currency-eur</v-icon> Vender
         </v-btn>
       </div>
       <div v-if="isAuthenticated">
