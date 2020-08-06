@@ -16,23 +16,24 @@
             v-model="password"
             :rules="passwordRules"
             type="password"
-            label="password"
+            label="Contraseña"
             required
           ></v-text-field>
-
-          <v-btn color="primary" nuxt @click="login">
-            Enviar
-          </v-btn>
+          <div class="text-center">
+            <v-btn block color="primary" nuxt @click="login">
+              Enviar
+            </v-btn>
+          </div>
         </v-form>
       </v-col>
     </v-row>
     <v-row>
       <v-col cols="12" md="4" class="mx-auto pt-3">
         <v-divider></v-divider>
-        <p class="mt-4">
+        <p class="mt-4 text-center">
           No tienes cuenta? Crea una
           <v-btn color="primary" text nuxt to="/signup">
-            signup
+            Regístrate
           </v-btn>
         </p>
       </v-col>
@@ -62,7 +63,7 @@ export default {
         user_password: this.password,
       }
       this.$auth.loginWith('local', { data })
-      this.$router.push('/productList')
+      // this.$router.push('/productList')
     },
   },
 }

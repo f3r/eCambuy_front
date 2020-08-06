@@ -35,7 +35,7 @@
             required
           ></v-text-field>
 
-          <v-btn color="primary" nuxt @click="createProduct">
+          <v-btn block color="primary" nuxt @click="createProduct">
             Enviar
           </v-btn>
         </v-form>

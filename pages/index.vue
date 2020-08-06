@@ -21,7 +21,7 @@
 
         <div class="text-center mt-12">
           <v-btn color="success" nuxt to="productList">
-            Ver productos
+            Ver todos los productos
           </v-btn>
         </div>
       </v-col>

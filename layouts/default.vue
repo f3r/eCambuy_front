@@ -4,7 +4,7 @@
       <v-container>
         <v-layout v-if="isAuthenticated" mt-4 column align-center>
           <v-flex>
-            <v-avatar
+            <v-avatar size="100"
               ><v-img src="https://randomuser.me/api/portraits/men/85.jpg"
                 >></v-img
               ></v-avatar
@@ -33,22 +33,41 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-container>
+        <div v-if="isAuthenticated" class="text-center">
+          <v-btn color="dark" dark @click="logout">Desconectar</v-btn>
+        </div>
+        <div v-else>
+          <div class="text-center mb-3">
+            <v-btn color="success" to="/login">Iniciar sesión</v-btn>
+          </div>
+          <div class="text-center">
+            <!--<v-btn color="success" to="/signup">Regístrate</v-btn>-->
+          </div>
+        </div>
+      </v-container>
     </v-navigation-drawer>
 
     <v-app-bar app>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title v-text="title" />
+      <!--<v-img src="~/static/01gloo.png"></v-img>-->
       <v-spacer />
-      <v-btn text to="/addProductForm">€</v-btn>
+      <div class="mr-4">
+        <v-btn color="success" to="/addProductForm">
+          <v-icon>mdi-currency-eur</v-icon>
+        </v-btn>
+      </div>
       <div v-if="isAuthenticated">
-        {{ loggedInUser.username }}
-        <v-btn text to="/profile">Perfil</v-btn>
-        <v-btn text @click="logout">Logout</v-btn>
+        <v-btn color="primary" to="/profile"
+          ><v-icon> mdi-account</v-icon> {{ loggedInUser.username }}</v-btn
+        >
+        <v-btn color="dark" dark @click="logout">Desconectar</v-btn>
       </div>
       <div v-else>
-        <v-btn text to="/login">Login</v-btn>
-        <v-btn text to="/signup">Register</v-btn>
+        <v-btn color="success" to="/login">Iniciar sesión</v-btn>
+        <!--<v-btn color="success" to="/signup">Regístrate</v-btn>-->
       </div>
     </v-app-bar>
 
