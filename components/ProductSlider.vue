@@ -56,7 +56,6 @@ export default {
   font-size: 2em;
   padding: 10px;
   text-align: center;
-  left: 30%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   width: 50%;

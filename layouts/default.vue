@@ -35,11 +35,15 @@
       </v-list>
       <v-container>
         <div v-if="isAuthenticated" class="text-center">
-          <v-btn color="dark" dark @click="logout">Desconectar</v-btn>
+          <v-btn color="dark" dark @click="logout">
+            <v-icon left>mdi-logout</v-icon>Desconectar</v-btn
+          >
         </div>
         <div v-else>
           <div class="text-center mb-3">
-            <v-btn color="success" to="/login">Iniciar sesión</v-btn>
+            <v-btn color="success" to="/login">
+              <v-icon left>mdi-login</v-icon>Iniciar sesión</v-btn
+            >
           </div>
           <div class="text-center">
             <!--<v-btn color="success" to="/signup">Regístrate</v-btn>-->
@@ -49,26 +53,39 @@
     </v-navigation-drawer>
 
     <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        class="hidden-sm-and-up"
+        @click="drawer = !drawer"
+      ></v-app-bar-nav-icon>
 
-      <v-toolbar-title v-text="title" />
+      <nuxt-link to="/">
+        <v-toolbar-title v-text="title" />
+      </nuxt-link>
+
       <!--<v-img src="~/static/01gloo.png"></v-img>-->
       <v-spacer />
-      <div class="mr-4">
-        <v-btn color="success" to="/addProductForm">
-          <v-icon>mdi-currency-eur</v-icon> Vender
-        </v-btn>
-      </div>
-      <div v-if="isAuthenticated">
-        <v-btn color="primary" to="/profile"
-          ><v-icon> mdi-account</v-icon> {{ loggedInUser.username }}</v-btn
-        >
-        <v-btn color="dark" dark @click="logout">Desconectar</v-btn>
-      </div>
-      <div v-else>
-        <v-btn color="success" to="/login">Iniciar sesión</v-btn>
-        <!--<v-btn color="success" to="/signup">Regístrate</v-btn>-->
-      </div>
+      <v-toolbar-items class="hidden-xs-only mt-6">
+        <div class="mr-4">
+          <v-btn color="success" to="/addProductForm">
+            <v-icon left>mdi-currency-eur</v-icon> Vender
+          </v-btn>
+        </div>
+        <div v-if="isAuthenticated">
+          <v-btn class="mr-2" color="primary" to="/profile"
+            ><v-icon left>mdi-account</v-icon>
+            {{ loggedInUser.username }}</v-btn
+          >
+          <v-btn color="dark" dark @click="logout">
+            <v-icon left>mdi-logout</v-icon>Desconectar</v-btn
+          >
+        </div>
+        <div v-else>
+          <v-btn color="success" to="/login">
+            <v-icon left>mdi-login</v-icon>Iniciar sesión</v-btn
+          >
+          <!--<v-btn color="success" to="/signup">Regístrate</v-btn>-->
+        </div>
+      </v-toolbar-items>
     </v-app-bar>
 
     <v-main>
@@ -106,6 +123,11 @@ export default {
           icon: 'mdi-format-list-checkbox',
           title: 'Lista de productos',
           to: '/productList',
+        },
+        {
+          icon: 'mdi-currency-eur',
+          title: 'Vender',
+          to: '/addProductForm',
         },
       ],
       title: 'eCambuy',
